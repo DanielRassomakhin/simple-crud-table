@@ -1,7 +1,7 @@
-import 'vuetify/styles';
-import '@mdi/font/css/materialdesignicons.css';
-import { createVuetify } from 'vuetify';
-import { aliases, mdi } from 'vuetify/iconsets/mdi';
+import "vuetify/styles";
+import "@mdi/font/css/materialdesignicons.css";
+import { createVuetify } from "vuetify";
+import { aliases, mdi } from "vuetify/iconsets/mdi";
 import {
   VBtn,
   VDataTableServer,
@@ -13,11 +13,11 @@ import {
   VCardText,
   VCardActions,
   VSpacer,
-} from 'vuetify/components';
+} from "vuetify/components";
 
 const vuetify = createVuetify({
   icons: {
-    defaultSet: 'mdi',
+    defaultSet: "mdi",
     aliases,
     sets: { mdi },
   },
@@ -36,4 +36,3 @@ const vuetify = createVuetify({
 });
 
 export default vuetify;
-

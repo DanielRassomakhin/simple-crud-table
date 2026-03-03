@@ -46,7 +46,7 @@ export const applicantsHandlers = [
 
       if (search) {
         items = items.filter((item) =>
-          normalize(item.fullName).includes(search)
+          normalize(item.fullName).includes(search),
         );
       }
 
@@ -85,7 +85,7 @@ export const applicantsHandlers = [
       };
 
       return HttpResponse.json<ApplicantsListResponse>(response);
-    }
+    },
   ),
 
   http.post<never, Partial<Applicant>, Applicant | { message: string }>(
@@ -96,7 +96,7 @@ export const applicantsHandlers = [
       if (!body.fullName || !body.phone || !body.status) {
         return HttpResponse.json<{ message: string }>(
           { message: "fullName, phone и status обязательны" },
-          { status: 400 }
+          { status: 400 },
         );
       }
 
@@ -107,7 +107,7 @@ export const applicantsHandlers = [
       });
 
       return HttpResponse.json<Applicant>(applicant, { status: 201 });
-    }
+    },
   ),
 
   http.put<{ id: string }, Partial<Applicant>, Applicant | { message: string }>(
@@ -118,7 +118,7 @@ export const applicantsHandlers = [
       if (!Number.isFinite(id)) {
         return HttpResponse.json<{ message: string }>(
           { message: "Некорректный id" },
-          { status: 400 }
+          { status: 400 },
         );
       }
 
@@ -143,12 +143,12 @@ export const applicantsHandlers = [
       if (!updated) {
         return HttpResponse.json<{ message: string }>(
           { message: "Заявитель не найден" },
-          { status: 404 }
+          { status: 404 },
         );
       }
 
       return HttpResponse.json<Applicant>(updated);
-    }
+    },
   ),
 
   http.delete<{ id: string }, never, { success: boolean; message?: string }>(
@@ -159,7 +159,7 @@ export const applicantsHandlers = [
       if (!Number.isFinite(id)) {
         return HttpResponse.json<{ success: boolean; message?: string }>(
           { success: false, message: "Некорректный id" },
-          { status: 400 }
+          { status: 400 },
         );
       }
 
@@ -168,13 +168,13 @@ export const applicantsHandlers = [
       if (!removed) {
         return HttpResponse.json<{ success: boolean; message?: string }>(
           { success: false, message: "Заявитель не найден" },
-          { status: 404 }
+          { status: 404 },
         );
       }
 
       return HttpResponse.json<{ success: boolean; message?: string }>({
         success: true,
       });
-    }
+    },
   ),
 ];

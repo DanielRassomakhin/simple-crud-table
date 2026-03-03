@@ -67,7 +67,7 @@ const props = withDefaults(
     showConfirm: true,
     showCancel: true,
     confirmDisabled: false,
-  }
+  },
 );
 
 const emit = defineEmits<{

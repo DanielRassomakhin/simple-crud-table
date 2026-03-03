@@ -25,6 +25,12 @@ export default tseslint.config(
         ...globals.node,
       },
     },
+    rules: {
+      "vue/max-attributes-per-line": "off",
+      "vue/attributes-order": "off",
+      "vue/no-required-prop-with-default": "off",
+      "vue/require-default-prop": "off",
+    },
   },
   {
     files: ["**/*.{js,mjs,cjs,ts,tsx}"],
@@ -42,5 +48,5 @@ export default tseslint.config(
       "@typescript-eslint/no-empty-object-type": "off",
       "@typescript-eslint/no-explicit-any": "off",
     },
-  }
+  },
 );

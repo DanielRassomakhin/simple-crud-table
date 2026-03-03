@@ -16,7 +16,7 @@ import { z } from "zod";
  * if (!result) return;
  */
 export function useFormValidation<TSchema extends z.ZodObject<z.ZodRawShape>>(
-  schema: TSchema
+  schema: TSchema,
 ) {
   type Input = z.input<TSchema>;
   type Output = z.output<TSchema>;

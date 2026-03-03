@@ -63,7 +63,7 @@ export const useApplicantsStore = defineStore("applicants", () => {
   }
 
   async function createApplicant(
-    payload: ApplicantCreatePayload
+    payload: ApplicantCreatePayload,
   ): Promise<Applicant> {
     mutationLoading.value = true;
     error.value = null;
@@ -71,8 +71,8 @@ export const useApplicantsStore = defineStore("applicants", () => {
     try {
       const created = await createApplicantApi(payload);
 
-      search.value = '';
-      status.value = '';
+      search.value = "";
+      status.value = "";
       page.value = 1;
       await load();
 
@@ -91,7 +91,7 @@ export const useApplicantsStore = defineStore("applicants", () => {
 
   async function updateApplicant(
     id: number,
-    payload: Partial<ApplicantCreatePayload>
+    payload: Partial<ApplicantCreatePayload>,
   ): Promise<Applicant> {
     mutationLoading.value = true;
     error.value = null;
@@ -108,7 +108,7 @@ export const useApplicantsStore = defineStore("applicants", () => {
 
       const statusFilterActive = !!status.value;
 
-      if(statusFilterActive && updated.status !== status.value) {
+      if (statusFilterActive && updated.status !== status.value) {
         await load();
       }
 

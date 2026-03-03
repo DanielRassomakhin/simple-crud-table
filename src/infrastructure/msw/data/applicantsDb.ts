@@ -1,6 +1,4 @@
-import type {
-  Applicant
-} from "@/domain/applicants/applicant.model";
+import type { Applicant } from "@/domain/applicants/applicant.model";
 
 const d = (offset = 0) =>
   new Date(Date.now() - offset * 24 * 60 * 60 * 1000).toISOString();
@@ -153,7 +151,7 @@ let nextId = INITIAL_APPLICANTS.length + 1;
 export const applicants: Applicant[] = [...INITIAL_APPLICANTS];
 
 export const createApplicant = (
-  data: Omit<Applicant, "id" | "createdAt">
+  data: Omit<Applicant, "id" | "createdAt">,
 ): Applicant => {
   const applicant: Applicant = {
     ...data,
@@ -168,7 +166,7 @@ export const createApplicant = (
 
 export const updateApplicant = (
   id: number,
-  data: Partial<Omit<Applicant, "id" | "createdAt">>
+  data: Partial<Omit<Applicant, "id" | "createdAt">>,
 ): Applicant | null => {
   const index = applicants.findIndex((item) => item.id === id);
 

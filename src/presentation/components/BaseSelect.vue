@@ -52,7 +52,7 @@ withDefaults(
     clearable: false,
     error: "",
     hint: "",
-  }
+  },
 );
 
 const emit = defineEmits<{

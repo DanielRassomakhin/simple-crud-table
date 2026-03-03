@@ -71,7 +71,7 @@ const props = withDefaults(
     modelValue: boolean;
     applicant?: Applicant | null;
   }>(),
-  { modelValue: false, applicant: null }
+  { modelValue: false, applicant: null },
 );
 
 const emit = defineEmits<{ "update:modelValue": [value: boolean] }>();
@@ -91,7 +91,7 @@ const isFormValid = computed(
     form.fullName.trim().length > 0 &&
     form.phone.replace(/\D/g, "").length === 11 &&
     !!form.status &&
-    !hasErrors.value
+    !hasErrors.value,
 );
 
 const resetForm = () => {
@@ -104,7 +104,7 @@ watch(
   () => props.modelValue,
   (open) => {
     if (open) resetForm();
-  }
+  },
 );
 
 const close = () => emit("update:modelValue", false);

@@ -23,7 +23,7 @@ export type ApplicantsListResponse = {
 };
 
 export async function fetchApplicants(
-  params: ApplicantsQuery = {}
+  params: ApplicantsQuery = {},
 ): Promise<ApplicantsListResponse> {
   const { data } = await http.get<ApplicantsListResponse>("/applicants", {
     params,
@@ -38,7 +38,7 @@ export type ApplicantCreatePayload = {
 };
 
 export async function createApplicantApi(
-  payload: ApplicantCreatePayload
+  payload: ApplicantCreatePayload,
 ): Promise<Applicant> {
   const { data } = await http.post<Applicant>("/applicants", payload);
   return data;
@@ -46,7 +46,7 @@ export async function createApplicantApi(
 
 export async function updateApplicantApi(
   id: number,
-  payload: Partial<ApplicantCreatePayload>
+  payload: Partial<ApplicantCreatePayload>,
 ): Promise<Applicant> {
   const { data } = await http.put<Applicant>(`/applicants/${id}`, payload);
   return data;

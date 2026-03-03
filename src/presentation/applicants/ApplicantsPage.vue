@@ -55,7 +55,7 @@ const { pause: pauseLive, resume: resumeLive } = useIntervalFn(
   2000,
   {
     immediate: false,
-  }
+  },
 );
 
 const openCreate = () => {

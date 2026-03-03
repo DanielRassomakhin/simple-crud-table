@@ -57,7 +57,7 @@ const props = withDefaults(
     prependInnerIcon: undefined,
     appendInnerIcon: undefined,
     autocomplete: "off",
-  }
+  },
 );
 
 const emit = defineEmits<{
@@ -117,7 +117,7 @@ watch(
     if (maskRef.value.value !== value) {
       maskRef.value.value = value;
     }
-  }
+  },
 );
 
 watch(
@@ -125,7 +125,7 @@ watch(
   async () => {
     await nextTick();
     initMask();
-  }
+  },
 );
 
 onMounted(async () => {

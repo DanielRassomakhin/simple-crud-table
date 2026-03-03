@@ -73,8 +73,12 @@ const onStatusChange = (value: unknown) => {
 
 watch(searchLocal, (value) => applySearch(value));
 
-watch(storeSearch, (value) => { if (searchLocal.value !== value) searchLocal.value = value; });
-watch(storeStatus, (value) => { if (statusLocal.value !== value) statusLocal.value = value; });
+watch(storeSearch, (value) => {
+  if (searchLocal.value !== value) searchLocal.value = value;
+});
+watch(storeStatus, (value) => {
+  if (statusLocal.value !== value) statusLocal.value = value;
+});
 </script>
 
 <style scoped>

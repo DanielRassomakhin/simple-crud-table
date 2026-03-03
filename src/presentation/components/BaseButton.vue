@@ -35,7 +35,7 @@ const props = withDefaults(
     loading: false,
     disabled: false,
     block: false,
-  }
+  },
 );
 
 const emit = defineEmits<{
