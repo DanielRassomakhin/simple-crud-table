@@ -70,8 +70,12 @@ export const useApplicantsStore = defineStore("applicants", () => {
 
     try {
       const created = await createApplicantApi(payload);
-      items.value = [created, ...items.value];
-      total.value += 1;
+
+      search.value = '';
+      status.value = '';
+      page.value = 1;
+      await load();
+
       toast.success("Заявитель создан");
       return created;
     } catch (err) {

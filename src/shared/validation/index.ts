@@ -17,6 +17,10 @@ export const phoneRuSchema = z
   .string()
   .min(1, "Телефон обязателен")
   .refine(
+    (v) => !/[a-zA-Zа-яА-ЯёЁ]/u.test(v),
+    "Телефон не должен содержать буквы"
+  )
+  .refine(
     (v) => v.replace(/\D/g, "").length === 11,
     "Телефон должен содержать 11 цифр"
   );

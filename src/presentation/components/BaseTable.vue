@@ -23,7 +23,7 @@
         </div>
       </template>
 
-      <template #item.actions="{ item }">
+      <template #[`item.actions`]="{ item }">
         <slot name="item.actions" :item="item" />
       </template>
     </VDataTableServer>

@@ -27,7 +27,7 @@ type SelectItem<T = unknown> = T & {
   value?: string | number;
 };
 
-const props = withDefaults(
+withDefaults(
   defineProps<{
     modelValue: unknown;
     items: SelectItem[];

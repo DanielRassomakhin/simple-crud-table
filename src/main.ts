@@ -1,7 +1,6 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
 import Toast, { type PluginOptions } from "vue-toastification";
-import { vMaska } from "maska";
 import App from "./App.vue";
 import router from "./app/router";
 import vuetify from "./app/plugins/vuetify";
@@ -19,7 +18,6 @@ async function bootstrap() {
   app.use(createPinia());
   app.use(router);
   app.use(vuetify);
-  app.directive("maska", vMaska);
   app.use(Toast, {
     position: "top-right",
     timeout: 3000,

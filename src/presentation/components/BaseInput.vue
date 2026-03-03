@@ -1,5 +1,6 @@
 <template>
   <VTextField
+    ref="textFieldRef"
     class="base-input"
     :label="label"
     :placeholder="placeholder"
@@ -16,12 +17,14 @@
     :append-inner-icon="appendInnerIcon"
     :autocomplete="autocomplete"
     :model-value="modelValue"
-    v-maska="mask ? { mask } : undefined"
     @update:model-value="onUpdate"
   />
 </template>
 
 <script setup lang="ts">
+import { nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
+import IMask from "imask";
+
 type InputType = "text" | "tel" | "email" | "password";
 type Density = "default" | "comfortable" | "compact";
 
@@ -62,10 +65,75 @@ const emit = defineEmits<{
   (e: "change", value: string): void;
 }>();
 
-const onUpdate = (value: string) => {
+const textFieldRef = ref<{ $el?: HTMLElement } | null>(null);
+const maskRef = ref<ReturnType<typeof IMask> | null>(null);
+
+const getInputElement = () =>
+  textFieldRef.value?.$el?.querySelector("input") ?? null;
+
+const emitValue = (value: string) => {
   emit("update:modelValue", value);
   emit("change", value);
 };
+
+const onUpdate = (value: string) => {
+  if (props.mask) return;
+  emitValue(value);
+};
+
+const destroyMask = () => {
+  maskRef.value?.destroy();
+  maskRef.value = null;
+};
+
+const initMask = () => {
+  destroyMask();
+
+  if (!props.mask) return;
+
+  const input = getInputElement();
+  if (!input) return;
+
+  const normalizedMask = props.mask.replace(/#/g, "0");
+
+  const mask = IMask(input, {
+    mask: normalizedMask,
+    lazy: false,
+  });
+
+  mask.on("accept", () => emitValue(mask.value));
+
+  if (props.modelValue) {
+    mask.value = props.modelValue;
+  }
+
+  maskRef.value = mask;
+};
+
+watch(
+  () => props.modelValue,
+  (value) => {
+    if (!maskRef.value) return;
+    if (maskRef.value.value !== value) {
+      maskRef.value.value = value;
+    }
+  }
+);
+
+watch(
+  () => props.mask,
+  async () => {
+    await nextTick();
+    initMask();
+  }
+);
+
+onMounted(async () => {
+  await nextTick();
+  initMask();
+});
+
+onBeforeUnmount(destroyMask);
 </script>
 
 <style scoped>

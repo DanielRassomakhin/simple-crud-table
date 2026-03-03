@@ -62,7 +62,7 @@ const STATUS_ITEMS = [
 
 const EMPTY_FORM: ApplicantFormInput = {
   fullName: "",
-  phone: "+7 ",
+  phone: "",
   status: "new",
 };
 

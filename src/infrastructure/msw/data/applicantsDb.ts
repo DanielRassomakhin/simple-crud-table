@@ -150,7 +150,7 @@ const INITIAL_APPLICANTS: Applicant[] = [
 
 let nextId = INITIAL_APPLICANTS.length + 1;
 
-export let applicants: Applicant[] = [...INITIAL_APPLICANTS];
+export const applicants: Applicant[] = [...INITIAL_APPLICANTS];
 
 export const createApplicant = (
   data: Omit<Applicant, "id" | "createdAt">
@@ -176,8 +176,13 @@ export const updateApplicant = (
     return null;
   }
 
+  const current = applicants[index];
+  if (!current) {
+    return null;
+  }
+
   const updated: Applicant = {
-    ...applicants[index],
+    ...current,
     ...data,
   };
 

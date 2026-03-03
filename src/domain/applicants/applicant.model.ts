@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const applicantStatusSchema = z.enum(["new", "in_work", "done"]);
 
-const applicantSchema = z.object({
+export const applicantSchema = z.object({
   id: z.number(),
   fullName: z.string().min(1),
   phone: z.string(),

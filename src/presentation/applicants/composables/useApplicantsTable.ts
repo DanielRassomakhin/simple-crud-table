@@ -14,10 +14,10 @@ const NO_DATA_TEXT = "Нет данных";
 const HEADERS: TableHeader[] = [
   { key: "id", title: "ID", sortable: true, align: "start" },
   { key: "fullName", title: "ФИО", sortable: true, align: "start" },
-  { key: "phone", title: "Телефон", align: "start" },
-  { key: "status", title: "Статус", sortable: true, align: "start" },
+  { key: "phone", title: "Телефон", sortable: false, align: "start" },
+  { key: "status", title: "Статус", sortable: false, align: "start" },
   { key: "createdAt", title: "Создан", sortable: true, align: "start" },
-  { key: "actions", title: "Действия", align: "end" },
+  { key: "actions", title: "Действия", sortable: false, align: "end" },
 ];
 
 export function useApplicantsTable() {

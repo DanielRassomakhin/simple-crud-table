@@ -12,7 +12,7 @@
     @update:items-per-page="setItemsPerPage"
     @update:sort-by="onSortBy"
   >
-    <template #item.actions="{ item }">
+    <template #[`item.actions`]="{ item }">
       <BaseButton
         variant="text"
         color="primary"

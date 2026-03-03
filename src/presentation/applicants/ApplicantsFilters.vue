@@ -37,6 +37,7 @@
 
 <script setup lang="ts">
 import { ref, watch } from "vue";
+import { storeToRefs } from "pinia";
 import { useDebounceFn } from "@vueuse/core";
 import BaseInput from "@/presentation/components/BaseInput.vue";
 import BaseButton from "@/presentation/components/BaseButton.vue";
@@ -45,6 +46,7 @@ import { useApplicantsStore } from "@/application/applicants/applicants.store";
 import type { ApplicantStatus } from "@/domain/applicants/applicant.model";
 
 const store = useApplicantsStore();
+const { search: storeSearch, status: storeStatus } = storeToRefs(store);
 
 const showFilters = ref(false);
 const searchLocal = ref("");
@@ -69,12 +71,10 @@ const onStatusChange = (value: unknown) => {
   store.setStatus((value as ApplicantStatus | "") ?? "");
 };
 
-watch(
-  () => searchLocal.value,
-  (value) => {
-    applySearch(value);
-  }
-);
+watch(searchLocal, (value) => applySearch(value));
+
+watch(storeSearch, (value) => { if (searchLocal.value !== value) searchLocal.value = value; });
+watch(storeStatus, (value) => { if (statusLocal.value !== value) statusLocal.value = value; });
 </script>
 
 <style scoped>
